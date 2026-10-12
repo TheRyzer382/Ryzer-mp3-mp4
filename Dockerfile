@@ -6,7 +6,7 @@ WORKDIR /tmp/package
 COPY ryzer_downloader.zip /tmp/package/ryzer_downloader.zip
 RUN mkdir -p /app && unzip -q /tmp/package/ryzer_indirici.zip -d /app && rm -rf /tmp/package
 WORKDIR /app/ryzer_downloader
-RUN pip install --no-cache-dir -r requirements.txt && mkdir -p /app/data/downloads
+RUN mkdir -p /app && unzip -q /tmp/package/ryzer_downloader.zip -d /app && rm -rf /tmp/package
 ENV DB_PATH=/app/data/history.sqlite3
 ENV DOWNLOAD_DIR=/app/data/downloads
 EXPOSE 8080
