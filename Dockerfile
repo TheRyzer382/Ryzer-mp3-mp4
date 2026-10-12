@@ -3,7 +3,7 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg unzip ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /tmp/package
-COPY ryzer_indirici.zip /tmp/package/ryzer_indirici.zip
+COPY ryzer_downloader.zip /tmp/package/ryzer_downloader.zip
 RUN mkdir -p /app && unzip -q /tmp/package/ryzer_indirici.zip -d /app && rm -rf /tmp/package
 WORKDIR /app/ryzer_downloader
 RUN pip install --no-cache-dir -r requirements.txt && mkdir -p /app/data/downloads
