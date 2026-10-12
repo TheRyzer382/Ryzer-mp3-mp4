@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<title>RYZER CONVERT — MP3 / MP4</title>
+<style>
+:root{color-scheme:dark;--bg:#090909;--panel:#121212;--line:#292929;--muted:#a1a1aa;--white:#f5f5f5;--red:#ff3347}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#301015 0%,#090909 48%);color:var(--white);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial;min-height:100vh}
+main{width:min(680px,100%);margin:auto;padding:26px 18px 44px}.brand{display:flex;align-items:center;gap:11px;margin:10px 0 42px}.logo{width:42px;height:42px;border-radius:13px;background:var(--red);display:grid;place-items:center;font-weight:900;color:#fff;box-shadow:0 8px 28px #ff334733}.brandname{font-size:15px;font-weight:850;letter-spacing:2px}.subbrand{font-size:11px;color:var(--muted);letter-spacing:1.5px}
+h1{font-size:clamp(32px,8vw,49px);line-height:1.05;letter-spacing:-1.8px;margin:0 0 13px;font-weight:850}h1 span{color:var(--red)}.intro{color:#aaa;max-width:470px;margin:0 0 28px;font-size:15px}
+.panel{background:linear-gradient(160deg,#171717,#101010);border:1px solid var(--line);border-radius:22px;padding:19px;box-shadow:0 18px 60px #0007}
+.label{display:block;font-size:13px;font-weight:700;margin:0 0 10px;color:#ddd}.modes{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:23px}.mode{border:1px solid #333;border-radius:13px;padding:14px 12px;background:#0d0d0d;color:#ddd;text-align:left;cursor:pointer;font-weight:750;display:flex;align-items:center;gap:10px}.mode small{display:block;font-size:11px;color:#929292;font-weight:500;margin-top:2px}.mode.active{border-color:var(--red);background:#291114;color:#fff}.ico{font-size:20px}
+input[type=url]{width:100%;border:1px solid #343434;border-radius:13px;background:#090909;color:#fff;padding:16px 14px;font-size:15px;outline:none;min-width:0}input:focus{border-color:var(--red);box-shadow:0 0 0 3px #ff33471c}.hint{color:#85858c;font-size:12px;margin:8px 2px 19px}
+.primary{width:100%;border:0;border-radius:13px;padding:16px;background:var(--red);color:white;font-size:15px;font-weight:850;cursor:pointer;box-shadow:0 8px 24px #ff334722}.primary:active{transform:scale(.99)}.status{display:none;margin-top:14px;padding:12px 13px;border:1px solid #3a3030;background:#1a1112;border-radius:12px;color:#e9c6c9;font-size:13px;overflow-wrap:anywhere}.status.show{display:block}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.step{border:1px solid #242424;background:#101010;border-radius:14px;padding:13px 11px}.step b{display:block;font-size:13px;margin:7px 0 3px}.step span{font-size:11px;color:#909098}.stepicon{font-size:18px}.note{font-size:12px;color:#85858c;margin:18px 2px 0}.footer{text-align:center;color:#666;font-size:11px;margin-top:30px}.footer strong{color:#aaa;letter-spacing:1px}
+@media(max-width:390px){main{padding:19px 13px 35px}.brand{margin-bottom:33px}.panel{padding:15px}.mode{padding:12px 9px}.steps{gap:7px}.step{padding:11px 8px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><div class="logo">R</div><div><div class="brandname">RYZER CONVERT</div><div class="subbrand">AUDIO / VIDEO TOOL</div></div></div>
+  <h1>Linkini yapıştır.<br><span>Formatını seç.</span></h1>
+  <p class="intro">Mobil cihazlar için sade MP3 ve MP4 dönüştürme arayüzü.</p>
+  <section class="panel">
+    <span class="label">Çıktı formatı</span>
+    <div class="modes">
+      <button class="mode active" id="mp3" type="button" aria-pressed="true"><span class="ico">♫</span><span>MP3<small>Ses dosyası</small></span></button>
+      <button class="mode" id="mp4" type="button" aria-pressed="false"><span class="ico">▶</span><span>MP4<small>Video dosyası</small></span></button>
+    </div>
+    <label class="label" for="url">Video bağlantısı</label>
+    <input id="url" type="url" inputmode="url" autocomplete="url" placeholder="https://...">
+    <p class="hint">Bir video sayfasının bağlantısını yapıştır.</p>
+    <button class="primary" id="convert" type="button">Dönüştürmeye devam et →</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </section>
+  <div class="steps">
+    <div class="step"><div class="stepicon">↗</div><b>1. Linki ekle</b><span>Video URL'sini yapıştır</span></div>
+    <div class="step"><div class="stepicon">◈</div><b>2. Formatı seç</b><span>MP3 veya MP4</span></div>
+    <div class="step"><div class="stepicon">↓</div><b>3. Dosyanı al</b><span>Desteklenen kaynaktan indir</span></div>
+  </div>
+  <p class="note">Not: Bu sayfa arayüzdür; gerçek dönüştürme işlemi bir dönüştürme sunucusu gerektirir. Aşağıdaki devam bağlantısı, URL'yi harici bir araca aktarır. Yalnızca indirme izniniz olan içeriklerde kullanın.</p>
+  <div class="footer"><strong>RYZER CONVERT</strong> · MOBİL UYUMLU</div>
+</main>
+<script>
+let format='mp3';
+const mp3=document.getElementById('mp3'), mp4=document.getElementById('mp4');
+const status=document.getElementById('status'), input=document.getElementById('url');
+function choose(f){format=f;mp3.classList.toggle('active',f==='mp3');mp4.classList.toggle('active',f==='mp4');mp3.setAttribute('aria-pressed',String(f==='mp3'));mp4.setAttribute('aria-pressed',String(f==='mp4'));document.getElementById('convert').textContent=(f==='mp3'?'MP3':'MP4')+' için devam et →'}
+mp3.addEventListener('click',()=>choose('mp3'));mp4.addEventListener('click',()=>choose('mp4'));
+document.getElementById('convert').addEventListener('click',()=>{
+ const raw=input.value.trim();
+ if(!raw){status.textContent='Önce bir video bağlantısı yapıştır.';status.classList.add('show');input.focus();return}
+ let u;try{u=new URL(raw)}catch(e){status.textContent='Bağlantı geçerli görünmüyor. https:// ile başlayan tam URL’yi gir.';status.classList.add('show');return}
+ if(!['http:','https:'].includes(u.protocol)){status.textContent='Yalnızca http veya https bağlantıları desteklenir.';status.classList.add('show');return}
+ status.textContent='Bu demo sayfası tek başına dosya dönüştürmez. Bağlantıyı harici dönüştürme hizmetinde açmak için devam et.';status.classList.add('show');
+ const dest='https://cobalt.tools/';
+ const a=document.createElement('a');a.href=dest;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Harici aracı aç';a.style.cssText='display:inline-block;margin-top:10px;color:#fff;font-weight:800;text-decoration:underline';
+ const old=status.querySelector('a');if(old)old.remove();status.appendChild(document.createElement('br'));status.appendChild(a);
+});
+</script>
+</body></html>
